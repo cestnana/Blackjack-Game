@@ -6,7 +6,7 @@ print("\n" * 20)
 print(art.logo)
 
 # initialize card deck
-deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 # player_cards = []
 # dealer_cards = []
 player_score = 0
@@ -23,6 +23,12 @@ def initial_hands():
   for _ in range(2):
     player_cards.append(random.choice(deck))
     dealer_cards.append(random.choice(deck))
+    
+def replace_11_with_1(hands):
+  for index_of_deck in range(len(hands)):
+    if hands[index_of_deck] == 11:
+      hands[index_of_deck] = 1
+      return hands
 
 def current_result():
   # show players all cards and players scores
@@ -41,6 +47,10 @@ def players_turn(player_cards, player_score, is_player_hits):
     player_cards.append(random.choice(deck))
     # sum player scores
     player_score = calculate_score(player_cards)
+    # check if Ace in hands before show current score
+    if 11 in player_cards:
+      # treat Ace as 1
+      replace_11_with_1(player_cards)
     # show current result
     current_result()
     if player_score > 21:
@@ -50,6 +60,7 @@ def players_turn(player_cards, player_score, is_player_hits):
       break
     # ask if player want to get another card
     is_player_hits = input("Type 'y' to get another card, type 'n' to pass: ")
+  return is_player_hits
     
 def dealers_turn(dealer_cards, dealer_score):
   while dealer_score <= 17:
@@ -100,7 +111,7 @@ while is_game_continue:
       # players turn -> invoke function
       players_turn(player_cards=player_cards, player_score=player_score, is_player_hits=is_player_hits)
       
-    elif is_player_hits == "n":
+    # if is_player_hits == "n":
       # It's dealer's turn
       # dealer's turn -> invoke function
       dealers_turn(dealer_cards=dealer_cards, dealer_score=dealer_score)
