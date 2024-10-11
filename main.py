@@ -112,7 +112,7 @@ result_message = "Game is not set."
 while is_game_continue: 
   # clear the screen
   print("\n")
-  is_game_continue = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+  is_game_continue = input("Do you want to play a game of Blackjack?\n Please Type 'y' for Yes or 'n' for No: ")
   if is_game_continue == "y":
     is_player_burst = False
     # initial first hands of both
@@ -138,6 +138,5 @@ while is_game_continue:
   elif is_game_continue == "n":
     break
   else:
-    print("Something went wrong!")
-    
+    print("Please enter 'y' or 'n' for further actions.")
     
