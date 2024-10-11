@@ -7,8 +7,7 @@ print(art.logo)
 
 # initialize card deck
 deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-# player_cards = []
-# dealer_cards = []
+# initialize player and dealer score
 player_score = 0
 dealer_score = 0
 # flag use to determine if dealer need to proceed
@@ -43,15 +42,13 @@ def final_result(result_message):
   print(f"Dealer's final hand: {dealer_cards}, final score: {calculate_score(dealer_cards)}")
   print(f"{result_message}")
   
-def players_turn(player_cards, player_score, is_player_burst):
+def players_turn(player_cards, player_score):
   # is_player_hits = "y"
   while player_score <= 21:
     # ask if player want to get another card
     is_player_hits = input("Type 'y' to get another card, type 'n' to pass: ")
+    # if player choose yes
     if is_player_hits == "y":
-    # # flag use to determine if dealer need to proceed
-    # is_player_burst = False
-    
       # player get another card
       player_cards.append(random.choice(deck))
       # sum player scores
@@ -64,10 +61,12 @@ def players_turn(player_cards, player_score, is_player_burst):
       player_score = calculate_score(player_cards)
       current_result()
       if player_score > 21:
+        global is_player_burst
         is_player_burst = True
         print("You burst!")
         result_message = "You lose."
         final_result(result_message)
+        # global is_player_burst
         return is_player_burst
     # return is_player_burst
     elif is_player_hits == "n":
@@ -125,9 +124,8 @@ while is_game_continue:
     current_result()
     # It's players turn
     # players turn -> invoke function
-    players_turn(player_cards=player_cards, player_score=player_score, is_player_burst=is_player_burst)
+    players_turn(player_cards=player_cards, player_score=player_score)
     
-  # if is_player_hits == "n":
     if is_player_burst == False:
       # It's dealer's turn
       # dealer's turn -> invoke function
