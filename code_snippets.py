@@ -7,3 +7,11 @@
 # print("Something went wrong!")
 
 # print("Please enter 'y' or 'n' for further actions.")
+
+  # if is_player_hits == "n":
+  
+# player_cards = []
+# dealer_cards = []
+
+# # flag use to determine if dealer need to proceed
+# is_player_burst = False
