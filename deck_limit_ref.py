@@ -61,7 +61,6 @@ def players_turn(player_cards, player_score, deck):
         deck.extend(initialize_deck())
         new_card = draw_card(deck)
       player_cards.append(new_card)
-      # ... rest of the function remains the same ...
       # sum player scores
       player_score = calculate_score(player_cards)
       # check if Ace in hands before show current score
@@ -92,7 +91,6 @@ def dealers_turn(dealer_cards, dealer_score, deck):
       deck.extend(initialize_deck())
       new_card = draw_card(deck)
     dealer_cards.append(new_card)
-    # ... rest of the function remains the same ...
     # sum dealer scores
     dealer_score = calculate_score(dealer_cards)
     # check if Ace in hands before show current score
@@ -133,7 +131,6 @@ while is_game_continue:
   if is_game_continue == "y":
     is_player_burst = False
     player_cards, dealer_cards = initial_hands(deck)
-    # ... rest of the game logic remains the same ...
     # update both player and dealer's score based on cards get
     player_score = calculate_score(player_cards)
     dealer_score = calculate_score(dealer_cards)
@@ -143,7 +140,6 @@ while is_game_continue:
     if is_player_burst == False:
       dealers_turn(dealer_cards=dealer_cards, dealer_score=dealer_score, deck=deck)
     
-    # ... rest of the code remains the same ...
     if calculate_score(player_cards) <= 21 and calculate_score(dealer_cards) <= 21:
       determine_result()
       # Add this check at the end of each game round
