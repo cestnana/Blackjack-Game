@@ -107,6 +107,19 @@ def dealers_turn(dealer_cards, dealer_score, deck):
       print("Dealer burst!")
       result_message = "You wins!"
       final_result(result_message)
+      
+def determine_result():
+  player_score = calculate_score(player_cards)
+  dealer_score = calculate_score(dealer_cards)
+  if player_score == dealer_score:
+    result_message = "It's draw."
+    final_result(result_message)
+  elif player_score > dealer_score: 
+    result_message = "You wins!"
+    final_result(result_message)
+  elif player_score < dealer_score:
+    result_message = "You lose."
+    final_result(result_message)
 
 # In the main game loop, initialize the deck and pass it to functions
 is_game_continue = "y"
@@ -131,8 +144,14 @@ while is_game_continue:
       dealers_turn(dealer_cards=dealer_cards, dealer_score=dealer_score, deck=deck)
     
     # ... rest of the code remains the same ...
+    if calculate_score(player_cards) <= 21 and calculate_score(dealer_cards) <= 21:
+      determine_result()
+      # Add this check at the end of each game round
+    if len(deck) < 52:  # Reshuffle when less than one deck remains
+      print("Reshuffling the deck...")
+      deck = initialize_deck(num_decks=6)
+  elif is_game_continue == "n":
+    break
+  else:
+    print("Please enter 'y' or 'n' for further actions.")
 
-# Add this check at the end of each game round
-  if len(deck) < 52:  # Reshuffle when less than one deck remains
-    print("Reshuffling the deck...")
-    deck = initialize_deck(num_decks=6)
